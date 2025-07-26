@@ -62,10 +62,11 @@ Over **150 features** designed to model key blend dynamics:
 
 ---
 
-## How to Run Locally
 
 ### Prerequisites
 - Python 3.9 or higher
+- Catboost gradient model
+- Streamlit
 - Git
 
 ---
@@ -73,8 +74,6 @@ Over **150 features** designed to model key blend dynamics:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/GauravMaheshh/Fuel-Blend-Prediction-Model.git
-cd Fuel-Blend-Prediction-Mode
 
 Fuel-Blend-Prediction-Model/
 ├── .gitignore                    # Git ignored files
