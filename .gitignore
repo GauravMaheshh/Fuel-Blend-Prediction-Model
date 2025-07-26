@@ -1,0 +1,11 @@
+# Python virtual environment
+venv/
+__pycache__/
+
+# Model and data files
+*.joblib
+dataset/
+
+# IDE and OS files
+.vscode/
+.DS_Store
