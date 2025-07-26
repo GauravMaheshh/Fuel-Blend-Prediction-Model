@@ -1,47 +1,87 @@
-Shell AI Hackathon: Sustainable Fuel Blend Property Predictor
-This project contains an interactive web application that predicts the properties of sustainable fuel blends using a machine learning model. It is the result of my participation in the Shell AI Hackathon for Sustainable and Efficient Energy.
+Sustainable Fuel Blend Property Predictor
+A machine learning project from the Shell AI Hackathon for Sustainable and Efficient Energy to predict the properties of complex fuel blends using a CatBoost model and an interactive Streamlit application.
 
-The core of the project is a CatBoost model trained on a complex dataset of fuel component fractions and properties. The model leverages extensive feature engineering to capture non-linear interactions between components, ultimately predicting 10 final blend properties with high accuracy.
+Project Overview
+The global push for sustainability is revolutionizing the energy sector. Sustainable Aviation Fuels (SAFs) are at the forefront of this change, offering a path to significantly reduce the environmental footprint of the aviation industry. However, creating optimal fuel blends is a highly complex challenge. The relationships between component fractions and final blend properties are non-linear and involve synergistic effects that are difficult to predict.
 
-Live Demo
-This application is deployed as a Streamlit web app.
+This project tackles that challenge head-on. The goal was to develop a robust predictive model that can accurately forecast the final properties of a fuel blend based on its constituent components. By doing so, this tool can help accelerate the research and development of new, sustainable fuel formulations, reducing costs and time-to-market.
 
-[Link to your deployed app will go here]
-
-Problem Statement
-The challenge was to develop a model to accurately predict the final properties of complex fuel blends based on their constituent components and proportions. This is critical for accelerating the development and adoption of Sustainable Aviation Fuels (SAFs), helping to reduce the environmental impact of the aviation industry.
-
-Features
-Interactive Interface: Upload a CSV file with fuel component data to receive instant predictions.
-Advanced ML Model: Utilizes a MultiOutputRegressor with CatBoost to handle the complexity of the data.
-In-depth Feature Engineering: Creates over 150 new features to model chemical interactions, blend complexity, and component dominance.
-Feature Importance: Visualizes the key drivers behind the model's predictions.
-Downloadable Results: Export the predictions to a submission.csv file.
+The Solution
+This repository contains two key components:
+A Predictive Machine Learning Model: A CatBoost regressor model that has been trained on a dataset of complex fuel blends. It leverages extensive feature engineering to understand the intricate relationships between fuel components.
+An Interactive Web Application: A Streamlit dashboard that provides a user-friendly interface to the model. Users can upload data for new blend compositions and receive instant predictions of the final properties.
+Key Features
+Advanced Feature Engineering: The model's accuracy is built on a foundation of over 150 engineered features designed to capture:
+Weighted Blend Properties: Calculating the blend's expected properties based on component fractions.
+Component Dominance: Analyzing the influence of the primary base fuel (Component 4).
+Chemical Synergy: Modeling the interaction effects between pairs of components.
+Blend Complexity: Using metrics like entropy and Gini coefficient to quantify the diversity of the blend.
+Accurate Predictions: Utilizes a MultiOutputRegressor with CatBoost, a powerful gradient boosting library optimized for performance and accuracy.
+Interactive UI: Allows for easy data upload and visualization of results, making the model accessible to non-technical users.
+Feature Importance Analysis: The app visualizes the top 20 features that most influence the model's predictions, providing insights into the key drivers of fuel properties.
 Technical Stack
-Python: The core programming language.
-Pandas & NumPy: For data manipulation and numerical operations.
-Scikit-learn & CatBoost: For building and training the machine learning model.
-Streamlit: For creating the interactive web application.
-Joblib: For serializing and deserializing the trained model.
+Core Language: Python
+Data Science: Pandas, NumPy, Scikit-learn
+Machine Learning: CatBoost
+Web Framework: Streamlit
+Model Persistence: Joblib
 How to Run Locally
-Clone the repository:
-git clone https://github.com/<your-username>/<your-repo-name>.git
-cd <your-repo-name>
+Follow these steps to set up and run the project on your local machine.
 
-Create a virtual environment (recommended):
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+Prerequisites
+Python 3.9 or higher
+Git
+1. Clone the Repository
+First, clone this repository to your local machine.
 
-Install the dependencies:
+# UPDATE THIS LINK
+
+git clone https://github.com/GauravMaheshh/Fuel-Blend-Prediction-Model.git
+cd Fuel-Blend-Prediction-Model
+
+2. Set Up a Virtual Environment (Recommended)
+This keeps the project's dependencies isolated.
+
+# Create the virtual environment
+python3 -m venv venv
+
+# Activate it
+# On macOS/Linux:
+source venv/bin/activate
+# On Windows:
+# venv\Scripts\activate
+
+3. Install Dependencies
+Install all the required libraries from the requirements.txt file.
+
 pip install -r requirements.txt
 
-Download the data:
-Place the train.csv file inside a dataset folder.
-Train the model:
-Run the training script once to create the model file.
+4. Prepare Data and Train the Model
+You only need to do this step once.
+Download the Data: Place the train.csv file from the hackathon into a new folder named dataset.
+Run the Training Script: This will create the catboost_fuel_blend_model.joblib file.
 python train_model.py
 
-Run the Streamlit app:
+5. Launch the Streamlit App
+Now, you can run the interactive application.
+
 streamlit run app.py
 
-The application will open in your web browser.
+Note: If you get a command not found error, run this command instead:
+python3 -m streamlit run app.py
+
+Your web browser will automatically open with the application running. You can now upload the test.csv file to see the model in action!
+
+Repository Structure
+.
+├── 📄 .gitignore         # Tells Git which files to ignore
+├── 📄 README.md           # This file
+├── 📄 app.py              # The main Streamlit application script
+├── 📄 requirements.txt   # A list of all Python dependencies
+├── 📄 train_model.py     # Script to train and save the ML model
+├── 📁 dataset/
+│   └── 📄 train.csv      # (You must add this) Training data
+└── 📁 catboost_fuel_blend_model.joblib # (Generated by train_model.py)
+
+
+This project is licensed under the MIT License. See the LICENSE file for detail
