@@ -1,7 +1,5 @@
 # Sustainable Fuel Blend Property Predictor
 
-By Gaurav Mahesh, Bharat Kameswaran, Somasekhar, Kapil T
-
 A machine learning project developed for the **Shell AI Hackathon for Sustainable and Efficient Energy**, designed to predict the properties of complex fuel blends using a **CatBoost model** and an **interactive Streamlit application**.
 
 ---
@@ -73,7 +71,11 @@ Over **150 features** designed to model key blend dynamics:
 
 ---
 
-### 1. Clone the Repository
+By 
+- [Gaurav Mahesh](https://github.com/GauravMaheshh)
+- [Bharat Kameswaran](https://github.com/BharatK0049)
+- Somasekhar
+- Kapil
 
 ```bash
 
