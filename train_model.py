@@ -7,15 +7,14 @@ import joblib
 import warnings
 warnings.filterwarnings('ignore')
 
-# --- Feature Engineering Function (Identical to the one in app.py) ---
+# --- Feature Engineering Function ---
 def create_advanced_fuel_features(df):
     df_out = df.copy()
     fractions = df_out[[f'Component{j}_fraction' for j in range(1, 6)]].values
     properties = {}
     for i in range(1, 11):
         properties[i] = df_out[[f'Component{j}_Property{i}' for j in range(1, 6)]].values
-    # (The rest of the function is the same as in app.py)
-    # ... [omitted for brevity, but should be included in your file] ...
+
     for i in range(1, 11):
         df_out[f'blend_prop_{i}'] = np.sum(properties[i] * fractions, axis=1)
         weighted_mean = df_out[f'blend_prop_{i}'].values.reshape(-1, 1)
@@ -53,12 +52,12 @@ if __name__ == "__main__":
     try:
         train_df = pd.read_csv('/Users/gaurav/Documents/Shell_Khans/dataset/train.csv')
     except FileNotFoundError:
-        print("❌ Error: 'dataset/train.csv' not found. Make sure the dataset is in the correct directory.")
+        print("Error: 'dataset/train.csv' not found. Make sure the dataset is in the correct directory.")
         exit()
 
-    print("🚀 Starting feature engineering...")
+    print("Starting feature engineering...")
     train_df = create_advanced_fuel_features(train_df)
-    print("✅ Feature engineering complete.")
+    print("Feature engineering complete.")
 
     # Prepare data for training
     target_cols = [f'BlendProperty{i}' for i in range(1, 11)]
@@ -79,15 +78,14 @@ if __name__ == "__main__":
     }
 
     # Create and train the model
-    print("🏋️ Training the final CatBoost model... (This may take several minutes)")
+    print("Training the final CatBoost model... (This may take several minutes)")
     catboost_model = MultiOutputRegressor(CatBoostRegressor(**catboost_params))
     catboost_model.fit(X, y)
-    print("✅ Model training complete.")
+    print("Model training complete.")
 
     # Save the model and feature columns
-    print("💾 Saving model and feature list...")
+    print("Saving model and feature list...")
     joblib.dump(catboost_model, 'catboost_fuel_blend_model.joblib')
     joblib.dump(feature_cols, 'feature_columns.joblib')
-    print("✅ Files saved successfully.")
-    print("\n🎉 You can now run the Streamlit app with: streamlit run app.py")
+    print("Files saved successfully.")
 
